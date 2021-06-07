@@ -10,7 +10,7 @@ function SelectWrapper ({name, options, ...rest}) {
     const [field, meta] = useField(name)
     const handleChange =evt => {
         const { value } = evt.target
-        console.log( value )
+        console.log( evt )
         setFieldValue(name, value)
     }
     const configSelect = {
@@ -23,7 +23,7 @@ function SelectWrapper ({name, options, ...rest}) {
     
     if (meta && meta.touched && meta.error) {
         configSelect.error = true
-        configSelect.helperText - meta.error
+        configSelect.helperText = meta.error
     }
     return (
   
@@ -31,7 +31,7 @@ function SelectWrapper ({name, options, ...rest}) {
                 {Object.keys(options).map((item, pos) =>{
                     return(
                         <MenuItem key={pos} value={item}>
-                            {options[items]}
+                            {options[item]}
                         </MenuItem>
                         
                         )

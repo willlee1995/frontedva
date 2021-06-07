@@ -9,6 +9,9 @@ import {
   Grid,
   Typography}
   from '@material-ui/core'
+import Select from './Components/FormsUI/Select'
+import listIndication from './data/listIndication.json'
+import Autocomplete from './Components/FormsUI/Autocomplete'
 
   const useStyles = makeStyles((theme) =>({
     formWrapper: {
@@ -24,6 +27,8 @@ import {
     email: '',
     phone: '',
     indication: '',
+    contraindication: '',
+    auto:''
   }
   const valSchema = Yup.object().shape({
     patientID: Yup.string()
@@ -35,7 +40,8 @@ import {
     .typeError('Please enter a valid phone number')
     .matches(/^1[0-9]{10}$|^[569][0-9]{7}$/, "Enter a valid telphone")
     .required("Required"),
-    indication:Yup.string().required()
+    indication:Yup.string().required(),
+    contraindication:Yup.string().required()
   })
   const onSubmit = (values) => {
     console.log(values)
@@ -95,12 +101,27 @@ function App() {
                       Procedure detail
                     </Typography>
                   </Grid>
+                  
                   <Grid item xs={12}>
-                    <TextField 
+                    <Select 
                           name="indication"
                           label="Indication"
+                          options={listIndication}
                         />
-                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField 
+                          name="contraindication"
+                          label="Contraindications or complicating factors"
+                          
+                        />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Autocomplete 
+                          name="auto"
+                          label="AutoComplete"
+                        />
+                  </Grid>
                   <Grid item xs={12}>
                     <Typography>
                       Booking information
