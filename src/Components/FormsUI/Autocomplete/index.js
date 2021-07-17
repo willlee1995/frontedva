@@ -22,7 +22,6 @@ const AutocompleteWrapper = ({
         variant: 'outlined',
         onChange: handleChange,
         options: {test},
-        getOptionLabel: (test) => test.title,
         renderInput: (params) => <TextField {...params} label={name} variant="outlined" />
     }
 
