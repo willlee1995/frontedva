@@ -133,7 +133,7 @@ function App() {
                   </Grid>
                   <Grid item xs={12}>
                     <ImageMarker name="initialAccess" label="Anatomy map" />
-
+                    <Button
                   </Grid>
                   <button type='submit'>Submit</button>
                 </Grid>
