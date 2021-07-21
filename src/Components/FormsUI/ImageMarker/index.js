@@ -2,7 +2,14 @@ import ImageMarker from 'react-image-marker'
 import { useState, useEffect } from 'react'
 import Anatomy from '../../../anatomy.svg'
 import { useField, useFormikContext } from 'formik'
-import { Button } from '@material-ui/core';
+import {
+
+    Grid,
+
+    Button
+}
+    from '@material-ui/core'
+
 
 const MarkerWrapper = ({
     name,
@@ -12,34 +19,43 @@ const MarkerWrapper = ({
     const { setFieldValue } = useFormikContext()
     const [markers, setMarkers] = useState(initState)
     const [field, meta] = useField(name)
+    var markersArray = JSON.parse(JSON.stringify((markers))) // That's the method for cloning with drawback of flattening the type of the object
     const handleApply = () => {
         setFieldValue(name, markers)
-        
+
         console.log(markers)
     }
     const handleDelete = () => {
         setMarkers([])
     }
-    const handleRemove = () => {
-        var markersArray = [...markers]
-        console.log("ori", markersArray)
+    function handlePop() {
+
         markersArray.pop()
-        console.log( [markersArray])
-        if (markersArray.length = 0) {
-            setMarkers(initState)
+        return markersArray
+        // Need to research for ways to splice an array without flattening //
+    }
+
+    function handleRemove(markersArray) {
+        var newMarkersArray = handlePop()
+
+        if ((newMarkersArray.length === 0)) {
+
+            return setMarkers(initState)
+
+        } else if ((newMarkersArray.length > 0)) {
+
+            return setMarkers(newMarkersArray)
+
         } else {
-            console.log("else", markersArray)
-            setMarkers(markersArray)
+
         }
-       // Need to research for ways to splice an array without flattening//
     }
     const HandleAdd = (marker) => {
         setMarkers([...markers, marker])
-        console.log(marker)
-        console.log(markers)
+
     }
     useEffect((name) => {
-       
+        setFieldValue(name, markers)
         console.log("effect", markers)
     }, [markers])
     const configImageMarker = {
@@ -47,7 +63,8 @@ const MarkerWrapper = ({
         ...rest,
         src: Anatomy,
         markers: markers,
-        onAddMarker: HandleAdd
+        onAddMarker: HandleAdd,
+
     }
 
     if (meta && meta.touched && meta.error) {
@@ -56,18 +73,24 @@ const MarkerWrapper = ({
     }
     return (
         <>
-        <div>
-            <ImageMarker {...configImageMarker} />
-        </div>
-        <div>
-            <Button center onClick={handleDelete} variant="contained" color="secondary">Reset</Button>
-        </div>
-        <div>
-            <Button center onClick={handleApply} variant="contained" color="secondary">Apply</Button>
-        </div>
-        <div>
-            <Button center onClick={handleRemove} variant="contained" color="secondary">Delete last marker</Button>
-        </div>
+            <Grid container>
+                <Grid item xs={12}>
+                    <ImageMarker {...configImageMarker} />
+                </Grid>
+                <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <Button fullWidth onClick={handleDelete} variant="contained" color="secondary">Reset</Button>
+                </Grid>
+                <Grid item xs={4}>
+                    <Button fullWidth onClick={handleApply} variant="contained" color="secondary">Apply</Button>
+                </Grid>
+                <Grid item xs={4}>
+                    <Button fullWidth onClick={handleRemove} variant="contained" color="secondary">Delete last marker</Button>
+                </Grid>
+                </Grid>
+
+            </Grid>
+
         </>
     )
 }

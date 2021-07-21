@@ -7,13 +7,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Container,
   Grid,
-  Typography
+  Typography,
+  Button
 }
   from '@material-ui/core'
 import Select from './Components/FormsUI/Select'
 import listIndication from './data/listIndication.json'
 //import Autocomplete from './Components/FormsUI/Autocomplete'
 import ImageMarker from './Components/FormsUI/ImageMarker'
+
 
 
 
@@ -45,13 +47,20 @@ const valSchema = Yup.object().shape({
     .matches(/^1[0-9]{10}$|^[569][0-9]{7}$/, "Enter a valid telphone")
     .required("Required"),
   indication: Yup.string().required(),
-  contraindication: Yup.string().required()
+  contraindication: Yup.string().required(),
+  initialAccess: Yup.array().min(1)
 })
 const onSubmit = (values) => {
   console.log(values)
+  // setFieldValue(initialValues, markers)
+
+  //       console.log(markers)
 }
+
+
 function App() {
   const classes = useStyles()
+ 
   return (
 
     <Grid container>
@@ -128,14 +137,13 @@ function App() {
                   </Grid> */}
                   <Grid item xs={12}>
                     <Typography>
-                      Vascular access
+                      Vascular access map
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <ImageMarker name="initialAccess" label="Anatomy map" />
-                    <Button
+                  <ImageMarker name="initialAccess" label="Anatomy map" />     
                   </Grid>
-                  <button type='submit'>Submit</button>
+                  <Button type='submit'>Submit</Button>
                 </Grid>
            
 
