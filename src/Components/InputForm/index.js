@@ -149,7 +149,23 @@ function App() {
                   <ImageMarker height="500" name="initialAccess" label="Anatomy map" />     
                   </Grid>
 
-                  <Button type='submit'>Submit</Button>
+                  <Grid
+                    container
+                    direction="column"
+                    justifycontent="center"
+                    alignItems="center"
+                  >
+                    <Grid item xs={4}>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Grid>
            
 

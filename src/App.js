@@ -10,6 +10,7 @@ function App() {
   return (
     <div>
       <LoginForm />
+      <InputForm />
     </div>
   )
 }
