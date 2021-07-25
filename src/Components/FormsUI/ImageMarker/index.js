@@ -9,12 +9,21 @@ import {
     Button
 }
     from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
+const useStyles = makeStyles({
+    anatomy: {
 
-const MarkerWrapper = ({ 
+    }
+})
+const MarkerWrapper = ({
     name,
     ...rest
 }) => {
+
+
+
+    const classess = useStyles()
     const initState = []
     const { setFieldValue } = useFormikContext()
     const [markers, setMarkers] = useState(initState)
@@ -54,7 +63,7 @@ const MarkerWrapper = ({
 
     }
     useEffect((name) => {
-        
+
         console.log("effect", markers)
     }, [markers])
     const configImageMarker = {
@@ -72,23 +81,27 @@ const MarkerWrapper = ({
     }
     return (
         <>
+
             <Grid container>
-                <Grid maxHeight="500px" item xs={12}>
+                <Grid className={classess.anatomy} item xs={12}>
                     <ImageMarker {...configImageMarker} />
                 </Grid>
                 <Grid container spacing={2}>
-                <Grid item xs={4}>
-                    <Button fullWidth onClick={handleDelete} variant="contained" color="secondary">Reset</Button>
-                </Grid>
-                <Grid item xs={4}>
-                    <Button fullWidth onClick={handleApply} variant="contained" color="secondary">Apply</Button>
-                </Grid>
-                <Grid item xs={4}>
-                    <Button fullWidth onClick={handleRemove} variant="contained" color="secondary">Delete last marker</Button>
-                </Grid>
+                    <Grid item xs={4}>
+                        <Button fullWidth onClick={handleDelete} variant="contained" color="secondary">Reset</Button>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Button fullWidth onClick={handleApply} variant="contained" color="secondary">Apply</Button>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Button fullWidth onClick={handleRemove} variant="contained" color="secondary">Delete last marker</Button>
+                    </Grid>
+
                 </Grid>
 
             </Grid>
+
+
 
         </>
     )
