@@ -1,6 +1,6 @@
 import ImageMarker from 'react-image-marker'
 import { useState, useEffect } from 'react'
-import Anatomy from '../../../anatomy.svg'
+import Anatomy from '../../../images/anatomy.svg'
 import { useField, useFormikContext } from 'formik'
 import {
 
@@ -11,7 +11,7 @@ import {
     from '@material-ui/core'
 
 
-const MarkerWrapper = ({
+const MarkerWrapper = ({ 
     name,
     ...rest
 }) => {
@@ -29,7 +29,6 @@ const MarkerWrapper = ({
         setMarkers([])
     }
     function handlePop() {
-
         markersArray.pop()
         return markersArray
         // Need to research for ways to splice an array without flattening //
@@ -55,7 +54,7 @@ const MarkerWrapper = ({
 
     }
     useEffect((name) => {
-        setFieldValue(name, markers)
+        
         console.log("effect", markers)
     }, [markers])
     const configImageMarker = {
@@ -74,7 +73,7 @@ const MarkerWrapper = ({
     return (
         <>
             <Grid container>
-                <Grid item xs={12}>
+                <Grid maxHeight="500px" item xs={12}>
                     <ImageMarker {...configImageMarker} />
                 </Grid>
                 <Grid container spacing={2}>

@@ -15,6 +15,7 @@ import Select from './Components/FormsUI/Select'
 import listIndication from './data/listIndication.json'
 //import Autocomplete from './Components/FormsUI/Autocomplete'
 import ImageMarker from './Components/FormsUI/ImageMarker'
+import DateTimePicker from './Components/FormsUI/DateTimePicker'
 
 
 
@@ -34,7 +35,8 @@ const iValues = {
   phone: '69383536',
   indication: 'CT',
   contraindication: 'qweqwe',
-  initialAccess: []
+  initialAccess: [],
+  examDate: ''
 }
 const valSchema = Yup.object().shape({
   patientID: Yup.string()
@@ -48,7 +50,7 @@ const valSchema = Yup.object().shape({
     .required("Required"),
   indication: Yup.string().required(),
   contraindication: Yup.string().required(),
-  initialAccess: Yup.array().min(1)
+  initialAccess: Yup.array().min(1) // require an alert for user if no apply is pressed before
 })
 const onSubmit = (values) => {
   console.log(values)
@@ -114,7 +116,12 @@ function App() {
                       Procedure detail
                     </Typography>
                   </Grid>
-
+                  <Grid item xs={12}>
+                    <DateTimePicker
+                      name="examDate"
+                      label="Exam Date"
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <Select
                       name="indication"
