@@ -1,14 +1,15 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import TextField from "../FormsUI/Textfield";
+
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Typography, Button } from "@material-ui/core";
-import Select from "../FormsUI/Select";
-import listIndication from "../../data/listIndication.json";
+import { Container, Grid, Button, Divider } from "@material-ui/core";
 //import Autocomplete from '../FormsUI/Autocomplete'
-import ImageMarker from "../FormsUI/ImageMarker";
-import DateTimePicker from "../FormsUI/DateTimePicker";
+
+import PatientDemo from "./PatientDemo";
+import VenMap from "./VenMap";
+import AccessDevice from "./AccessDevice";
+import Complications from "./Complications";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -18,14 +19,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const iValues = {
-  patientID: "Y3731231",
   lastName: "qwewq",
-  email: "12313@ae.com",
-  phone: "69383536",
+  patientID: "Y3731231",  
+  diagnosis: "some disease",
+  dob: "",
+  initialAccess: [],  
+  examDate: "",
+  accessVein: "",
+  tipPos: '',
+  removalDate: '',
+  treatmentEndpoint: '',
+  complications: '',
+  typesOfComplication: '',
   indication: "CT",
   contraindication: "qweqwe",
-  initialAccess: [],
-  examDate: "",
 };
 const valSchema = Yup.object().shape({
   patientID: Yup.string()
@@ -35,20 +42,12 @@ const valSchema = Yup.object().shape({
     )
     .required("Required"),
   lastName: Yup.string().required("Required"),
-  email: Yup.string().email("Not a valid email format").required("Required"),
-  phone: Yup.string()
-    .typeError("Please enter a valid phone number")
-    .matches(/^1[0-9]{10}$|^[569][0-9]{7}$/, "Enter a valid telphone")
-    .required("Required"),
-  indication: Yup.string().required(),
-  contraindication: Yup.string().required(),
+  diagnosis: Yup.string().required("Required"),
   initialAccess: Yup.array().min(1), // require an alert for user if no apply is pressed before
 });
 const onSubmit = (values) => {
   console.log(values);
-  // setFieldValue(initialValues, markers)
-
-  //       console.log(markers)
+  
 };
 
 function App() {
@@ -67,55 +66,17 @@ function App() {
               <Form>
                 <Grid container spacing={1}>
                   <Grid item xs={12}>
-                    <Typography>Patient Demographics</Typography>
+                    <PatientDemo /> {/* Tab 1 */}
                   </Grid>
-                  <Grid item xs={6}>
-                    <TextField name="patientID" label="Paitent ID" />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <TextField name="lastName" label="Last Name" />
+                  <Divider />
+                  <Grid item xs={12}>
+                    <VenMap /> {/* Tab 2 */}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField name="email" label="Email address" />
+                    <AccessDevice /> {/* Tab 3 */}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField name="phone" label="Phone number" />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography>Procedure detail</Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <DateTimePicker name="examDate" label="Exam Date" />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Select
-                      name="indication"
-                      label="Indication"
-                      options={listIndication}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      name="contraindication"
-                      label="Contraindications or complicating factors"
-                    />
-                  </Grid>
-                  {/* <Grid item xs={12}>
-                    <Autocomplete
-                      name="auto"
-                      label="AutoComplete"
-                    />
-                  </Grid> */}
-                  <Grid item xs={12}>
-                    <Typography>Vascular access map</Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ImageMarker
-                      height="500"
-                      name="initialAccess"
-                      label="Anatomy map"
-                    />
+                    <Complications /> {/* Tab 4 */}
                   </Grid>
 
                   <Grid

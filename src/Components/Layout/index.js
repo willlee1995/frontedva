@@ -1,14 +1,14 @@
-import React from 'react'
-import Header from '../Header'
+import React from "react";
+//import { BrowserRouter, Switch } from "react-router-dom";
+import Header from "../Header";
 function Layout(props) {
-    return (
-        <>
-        <Header />
-            <main>{props.children}</main>
-        
-        </>
-    )
+  return (
+    <>
+      <Header />
+
+      <main>{props.children}</main>
+    </>
+  );
 }
 
-export default Layout
-
+export default Layout;
