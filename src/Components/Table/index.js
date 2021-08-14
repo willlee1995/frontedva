@@ -1,9 +1,7 @@
 import React from 'react'
-import DataTable from "./Components/Table/Table";
+import DataTable from './Table';
 import TabelToolBar from './TableToolBar';
 import { Grid } from "@material-ui/core";
-
-import React from "react";
 
   function Table() {
     return (
