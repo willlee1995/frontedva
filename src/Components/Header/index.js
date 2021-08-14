@@ -44,6 +44,7 @@ export default function ButtonAppBar() {
           <Tabs value={value} onChange={handleChange} indicatorColor="primary">
             <Tab component={Link} to="/" label="Home" />
             <Tab component={Link} to="/input" label="Input Form" />
+            <Tab component={Link} to="/table" label="Table" />
           </Tabs>
         </Toolbar>
       </AppBar>
