@@ -6,6 +6,7 @@ import { Container, Grid, Typography, Button } from "@material-ui/core";
 import Password from "../FormsUI/Password";
 import { makeStyles } from "@material-ui/core/styles";
 import "@fontsource/roboto";
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -13,8 +14,19 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(8),
   },
 }));
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
 
-function LoginForm() {
+
+function LoginForm({setToken}) {
   const classes = useStyles();
   const iValues = {
     user: "",
@@ -25,12 +37,11 @@ function LoginForm() {
     password: Yup.string().required(),
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
-    // setFieldValue(initialValues, markers)
-
-    //       console.log(markers)
-  };
+  const handleSubmit = async e => {
+    e.preventDefault();
+    console.log(e.values)
+    ;
+  }
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -39,7 +50,7 @@ function LoginForm() {
             <Formik
               initialValues={iValues}
               validationSchema={validationSchema}
-              onSubmit={onSubmit}
+              onSubmit={handleSubmit}
             >
               <Form>
                 <Grid container spacing={6}>
@@ -80,3 +91,9 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+
+
+LoginForm.propTypes = {
+  setToken : PropTypes.func.isRequired
+}
