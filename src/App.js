@@ -8,9 +8,9 @@ import Table from './Components/Table'
 
 function App() {
   const [token, setToken ] = useState();
-  if (!token) {
+  /*if (!token) {
     return <LoginForm setToken={setToken} />
-  }
+  }*/
   
   return (
     <div>

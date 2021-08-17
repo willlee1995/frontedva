@@ -35,6 +35,7 @@ function index() {
       </Grid>
       <Grid item xs={12}>
         <TextField
+          shrink
           name="complications"
           label="Any complications?"
         />

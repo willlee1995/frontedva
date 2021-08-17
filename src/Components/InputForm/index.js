@@ -56,7 +56,7 @@ function App() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <div className={classes.formWrapper}>
             <Formik
               initialValues={{ ...iValues }}
