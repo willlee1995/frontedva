@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import { Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const columns = [
 
@@ -34,6 +36,30 @@ const columns = [
     headerName: 'Diagnosis / Underlying Disease',
     width: 300,
     editable: true,
+  },
+  {
+    field: "",
+    headerName: "Action",
+    disableClickEventBubbling: true,
+    renderCell: (params) => {
+      const onClick = () => {
+        console.log("Edit")
+      };
+
+      return <Button variant="outlined" onClick={onClick}>Edit</Button>;
+    }
+  },
+  {
+    field: "",
+    headerName: "Action",
+    disableClickEventBubbling: true,
+    renderCell: (params) => {
+      const onClick = () => {
+        console.log("View")
+      };
+
+      return <Button variant="outlined" onClick={onClick}>View</Button>;
+    }
   }
 ]
 

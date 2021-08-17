@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import InputForm from './Components/InputForm'
 import LoginForm from './Components/LoginForm'
@@ -7,6 +7,11 @@ import Layout from './Components/Layout'
 import Table from './Components/Table'
 
 function App() {
+  const [token, setToken ] = useState();
+  if (!token) {
+    return <LoginForm setToken={setToken} />
+  }
+  
   return (
     <div>
       <BrowserRouter>
