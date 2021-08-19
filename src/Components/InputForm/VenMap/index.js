@@ -9,7 +9,7 @@ function VenMap() {
         <Typography>Vascular access map</Typography>
       </Grid>
       <Grid item xs={12}>
-        <ImageMarker height="500" name="initialAccess" label="Anatomy map" />
+        <ImageMarker height="800" name="initialAccess" label="Anatomy map" />
       </Grid>
     </>
   );
