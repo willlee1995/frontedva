@@ -7,10 +7,10 @@ import Layout from './Components/Layout'
 import Table from './Components/Table'
 
 function App() {
-  const [token, setToken ] = useState();
-  if (!token) {
+  /*const [token, setToken ] = useState();
+  /*if (!token) {
     return <LoginForm setToken={setToken} />
-  }
+  }*/
   
   return (
     <div>

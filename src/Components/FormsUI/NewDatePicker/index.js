@@ -3,7 +3,7 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 import { useField, useFormikContext } from "formik";
 
 function NewDatePicker({ name, ...otherProps }) {
-  const { field, meta } = useField(name);
+  const { field } = useField(name);
   const [selectedDate, handleDateChange] = useState();
   const { setFieldValue } = useFormikContext();
   const configNewDatePicker = {
