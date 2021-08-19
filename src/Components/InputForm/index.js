@@ -3,14 +3,14 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Button, Divider } from "@material-ui/core";
+import { Container, Grid, Button } from "@material-ui/core";
 //import Autocomplete from '../FormsUI/Autocomplete'
+
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
+
 import PatientDemo from "./PatientDemo";
 import VenMap from "./VenMap";
 import AccessDevice from "./AccessDevice";
@@ -35,9 +35,9 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
+        <Grid item xs={12}>
+          {children}
+        </Grid>
       )}
     </div>
   );
@@ -54,17 +54,20 @@ const iValues = {
   lastName: "Chan Tai Man",
   patientID: "Y3731231",
   diagnosis: "some disease",
-  dob: "",
-  initialAccess: [],
-  examDate: "",
-  accessVein: "",
+  dob: new Date(2020, 1, 1),
+  initialAccess: [{top: 49.89298846022498, left: 49.157301966140636},], //for demo purpose
+  accessVein: "EIV",
+  laterality: "L",
+  examDate: "",  
   tipPos: '',
   removalDate: '',
   treatmentEndpoint: '',
   complications: '',
-  typesOfComplication: '',
+  typesOfComplication: 'PR',
   indication: "CT",
-  contraindication: "qweqwe",
+  detailsOfContraindication: "Failed initial puncture",
+  managementOfComp: "",
+  Outcome: "",
 };
 const valSchema = Yup.object().shape({
   patientID: Yup.string()
@@ -75,10 +78,11 @@ const valSchema = Yup.object().shape({
     .required("Required"),
   lastName: Yup.string().required("Required"),
   diagnosis: Yup.string().required("Required"),
-  initialAccess: Yup.array().min(1), // require an alert for user if no apply is pressed before
+  // initialAccess: Yup.array().min(1, "Click me "), // require an alert for user if no apply is pressed before
 });
 const onSubmit = (values) => {
-  console.log(values);
+  console.log("hi", values);
+
 
 };
 
@@ -89,13 +93,17 @@ function App() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const handleNext = (event) => {
+    let newValue = value + 1
+    setValue(newValue)
+  }
 
   return (
 
-    <Grid container>
+    <Grid container spacing={1}>
       <Grid item xs={12}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+        <AppBar color="transparent" position="static">
+          <Tabs color="transparent" centered indicatorColor="secondary" value={value} onChange={handleChange} aria-label="simple tabs example">
             <Tab label="Patient Demographic" {...a11yProps(0)} />
             <Tab label="Venous Mapping" {...a11yProps(1)} />
             <Tab label="Access Device" {...a11yProps(2)} />
@@ -104,7 +112,7 @@ function App() {
         </AppBar>
       </Grid>
       <Grid item xs={12}>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           <div className={classes.formWrapper}>
             <Formik
               initialValues={{ ...iValues }}
@@ -112,48 +120,54 @@ function App() {
               onSubmit={onSubmit}
             >
               <Form>
-
-                <Grid container spacing={1}>
+                <Grid container justifyContent="center" alignItems="center">
                   <TabPanel value={value} index={0}>
                     <Grid item xs={12}>
                       <PatientDemo /> {/* Tab 1 */}
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Button fullWidth variant="outlined" onClick={handleNext}>Next</Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={1}>
                     <Grid item xs={12}>
                       <VenMap /> {/* Tab 2 */}
                     </Grid>
+                    <Grid alignContent="center" item xs={4}>
+                      <Button variant="outlined" onClick={handleNext}>Next</Button>
+                    </Grid>
                   </TabPanel>
-                  <Divider />
+
                   <TabPanel value={value} index={2}>
                     <Grid item xs={12}>
                       <AccessDevice /> {/* Tab 3 */}
                     </Grid>
+                    <Grid alignContent="center" item xs={4}>
+                      <Button variant="outlined" onClick={handleNext}>Next</Button>
+                    </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={3}>
-                    <Grid item xs={12}>
-                      <Complications /> {/* Tab 4 */}
+
+                    <Complications /> {/* Tab 4 */}
+                    <Grid
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Grid item xs={4}>
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                        >
+                          Submit
+                        </Button>
+                      </Grid>
                     </Grid>
+
                   </TabPanel>
-
-
-                  <Grid
-                    container
-                    direction="column"
-                    justifycontent="center"
-                    alignItems="center"
-                  >
-                    <Grid item xs={4}>
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
-                  </Grid>
                 </Grid>
               </Form>
             </Formik>

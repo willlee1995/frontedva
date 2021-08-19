@@ -24,7 +24,7 @@ const MarkerWrapper = ({
 
 
     const classess = useStyles()
-    const initState = []
+    const initState = [{top: 49.89298846022498, left: 49.157301966140636}] //for demo, make sure to delete when moving on
     const { setFieldValue } = useFormikContext()
     const [markers, setMarkers] = useState(initState)
     const [field, meta] = useField(name)

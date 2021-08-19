@@ -1,14 +1,15 @@
 import React from "react";
-import {Grid, Typography} from '@material-ui/core'
+import {Grid} from '@material-ui/core'
 import TextField from '../../FormsUI/Textfield'
 
 import NewDatePicker from "../../FormsUI/NewDatePicker";
+
 function Demographics() {
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12}>
-        <Typography>Patient Demographics</Typography>
-      </Grid>
+      {/* <Grid item xs={12}>
+        <Typography variant="h6">Patient Demographics</Typography>
+      </Grid> */}
       <Grid item xs={6}>
         <TextField name="lastName" label="Patient Name" />
       </Grid>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import InputForm from './Components/InputForm'
 import LoginForm from './Components/LoginForm'
@@ -7,7 +7,7 @@ import Layout from './Components/Layout'
 import Table from './Components/Table'
 
 function App() {
-  const [token, setToken ] = useState();
+  //const [token, setToken ] = useState();
   /*if (!token) {
     return <LoginForm setToken={setToken} />
   }*/
@@ -15,7 +15,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-     
         <Layout />
         <Switch>
           <Route exact path='/' component={LoginForm} />
@@ -23,7 +22,6 @@ function App() {
           <Route exact path="/table" component={Table} />
         </Switch>
       </BrowserRouter>
-     
     </div>
   )
 }
