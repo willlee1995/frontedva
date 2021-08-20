@@ -18,8 +18,9 @@ import Complications from "./Complications";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(8),
+    flexGrow: 1,
   },
 }));
 
@@ -35,7 +36,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Grid item xs={12}>
+        <Grid container xs={12} spacing={1} justify="center">
           {children}
         </Grid>
       )}
@@ -51,23 +52,28 @@ function a11yProps(index) {
 }
 
 const iValues = {
-  lastName: "Chan Tai Man",
+  name: "Chan Tai Man",
   patientID: "Y3731231",
-  diagnosis: "some disease",
   dob: new Date(2020, 1, 1),
-  initialAccess: [{top: 49.89298846022498, left: 49.157301966140636},], //for demo purpose
+  diagnosis: "Congenital Heart disease",  
+  initialAccess: [{ top: 49.89298846022498, left: 49.157301966140636 },], //for demo purpose
+  patency: 1,
+  examDate: new Date(2021, 1, 1),
+  provider: "IR",
+  fr: "6Fr",
+  device: "Bioflo double lumen PICC",  
   accessVein: "EIV",
   laterality: "L",
-  examDate: "",  
-  tipPos: '',
-  removalDate: '',
-  treatmentEndpoint: '',
-  complications: '',
+  tipPos: 'SVC/RA junction',
+  removalDate: new Date(2021, 3, 1),
+  treatmentEndpoint: 1,
+  complications: 1,
+  remarks: 'None',
   typesOfComplication: 'PR',
-  indication: "CT",
-  detailsOfContraindication: "Failed initial puncture",
+  complicationDate: new Date(),
+  detailsOfComplication: "Failed initial puncture",
   managementOfComp: "",
-  Outcome: "",
+  outcome: "",
 };
 const valSchema = Yup.object().shape({
   patientID: Yup.string()
@@ -76,14 +82,12 @@ const valSchema = Yup.object().shape({
       "This is not a valid HKID format"
     )
     .required("Required"),
-  lastName: Yup.string().required("Required"),
-  diagnosis: Yup.string().required("Required"),
+  name: Yup.string().required("Required"),
+  
   // initialAccess: Yup.array().min(1, "Click me "), // require an alert for user if no apply is pressed before
 });
 const onSubmit = (values) => {
-  console.log("hi", values);
-
-
+  console.log("This is the submitted result", values);
 };
 
 function App() {
@@ -97,17 +101,21 @@ function App() {
     let newValue = value + 1
     setValue(newValue)
   }
+  const handleBack = (event) => {
+    let newValue = value - 1
+    setValue(newValue)
+  }
 
   return (
 
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <AppBar color="transparent" position="static">
-          <Tabs color="transparent" centered indicatorColor="secondary" value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tabs centered indicatorColor="secondary" value={value} onChange={handleChange} aria-label="simple tabs example">
             <Tab label="Patient Demographic" {...a11yProps(0)} />
             <Tab label="Venous Mapping" {...a11yProps(1)} />
             <Tab label="Access Device" {...a11yProps(2)} />
-            <Tab label="Complication" {...a11yProps(3)} />
+            <Tab label="Complications" {...a11yProps(3)} />
           </Tabs>
         </AppBar>
       </Grid>
@@ -126,7 +134,7 @@ function App() {
                       <PatientDemo /> {/* Tab 1 */}
                     </Grid>
                     <Grid item xs={4}>
-                      <Button fullWidth variant="outlined" onClick={handleNext}>Next</Button>
+                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={1}>
@@ -134,39 +142,30 @@ function App() {
                       <VenMap /> {/* Tab 2 */}
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button variant="outlined" onClick={handleNext}>Next</Button>
+                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
+                    </Grid>
+                    <Grid alignContent="center" item xs={4}>
+                      <Button fullWidth variant="contained" onClick={handleBack}>Back</Button>
                     </Grid>
                   </TabPanel>
-
                   <TabPanel value={value} index={2}>
                     <Grid item xs={12}>
                       <AccessDevice /> {/* Tab 3 */}
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button variant="outlined" onClick={handleNext}>Next</Button>
+                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
+                    </Grid>
+                    <Grid alignContent="center" item xs={4}>
+                      <Button fullWidth variant="contained" onClick={handleBack}>Back</Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={3}>
-
-                    <Complications /> {/* Tab 4 */}
-                    <Grid
-                      container
-                      direction="column"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid item xs={4}>
-                        <Button
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                          type="submit"
-                        >
-                          Submit
-                        </Button>
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Complications /> {/* Tab 4 */}
                     </Grid>
-
+                    <Grid item xs={4}>
+                      <Button fullWidth variant="contained" color="primary" type="submit">Submit</Button>
+                    </Grid>
                   </TabPanel>
                 </Grid>
               </Form>

@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField, MenuItem } from '@material-ui/core'
 import { useField, useFormikContext } from 'formik'
 
-function SelectWrapper({ name, options, ...rest }) {
+function SelectWrapper({ helperText, name, options, label, ...rest }) {
 
 
 
@@ -18,7 +18,9 @@ function SelectWrapper({ name, options, ...rest }) {
         select: true,
         variant: 'outlined',
         fullWidth: true,
-        onChange: handleChange
+        onChange: handleChange,
+        label: label,
+        helperText: helperText
     }
 
     if (meta && meta.touched && meta.error) {

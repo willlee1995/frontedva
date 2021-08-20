@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -71,6 +73,8 @@ export default function ButtonAppBar() {
           <MenuItem onClick={handleClose}><Link to='/'>Home</Link></MenuItem>
           <MenuItem onClick={handleClose}><Link to='/input'>Input Form</Link></MenuItem>
           <MenuItem onClick={handleClose}><Link to='/table'>Record</Link></MenuItem>
+          <MenuItem onClick={handleClose}><Link to='/panel'>Panel</Link></MenuItem>
+
           </Menu>
           </Fragment>
           )
@@ -80,6 +84,7 @@ export default function ButtonAppBar() {
             <Tab component={Link} to="/" label="Home" />
             <Tab component={Link} to="/input" label="Input Form" />
             <Tab component={Link} to="/table" label="Record" />
+            <Tab component={Link} to="/panel" label="Panel" />
           </Tabs>
           </Fragment>)
 

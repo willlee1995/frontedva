@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { KeyboardDatePicker } from "@material-ui/pickers";
+import { DateTimePicker } from "@material-ui/pickers";
 import { useField, useFormikContext } from "formik";
 
-function NewDatePicker({ name, ...otherProps }) {
+function NewDatePicker({ format, name, ...otherProps }) {
   const { field } = useField(name);
-  const [selectedDate, handleDateChange] = useState();
+  const [selectedDate, handleDateChange] = useState(null);
   const { setFieldValue } = useFormikContext();
   const configNewDatePicker = {
     ...field,
@@ -12,22 +12,24 @@ function NewDatePicker({ name, ...otherProps }) {
     placeholder: "",
     value: selectedDate,
     onChange: handleChange,
-    format: "dd/MM/yyyy",
+    format: format,
     clearable: true,
-    disableFuture: true,
+    disableFuture: false,
     fullWidth: true,
-    inputVariant: "outlined"
+    inputVariant: "outlined",  
+    allowKeyboardControl: true,
+    openTo: "date"
   };
 
   function handleChange(date) {
     handleDateChange(date);
-    console.log(date);
-    setFieldValue(name, date)
+    let dateofDate = date.toDateString().split(' ').slice(1).join(' ')
+    setFieldValue(name, dateofDate)
     
   }
   return (
     <Fragment>
-      <KeyboardDatePicker
+      <DateTimePicker
         {...configNewDatePicker}
       />
     </Fragment>

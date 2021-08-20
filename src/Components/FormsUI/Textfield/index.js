@@ -3,6 +3,7 @@ import { TextField } from '@material-ui/core'
 import { useField } from 'formik'
 
 const TextfieldWrapper = ({
+    helperText,
     name,
     ...rest
 }) => {
@@ -11,7 +12,8 @@ const TextfieldWrapper = ({
         ...field,
         ...rest,
         fullWidth: true,
-        variant: 'outlined'
+        variant: 'outlined',
+        helperText: helperText
     }
 
     if (meta && meta.touched && meta.error){

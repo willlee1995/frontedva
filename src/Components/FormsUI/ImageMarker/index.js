@@ -86,7 +86,7 @@ const MarkerWrapper = ({
                 <Grid className={classess.anatomy} item xs={12}>
                     <ImageMarker {...configImageMarker} />
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={1}>
                     <Grid item xs={4}>
                         <Button fullWidth onClick={handleDelete} variant="contained" color="secondary">Reset</Button>
                     </Grid>
@@ -96,9 +96,7 @@ const MarkerWrapper = ({
                     <Grid item xs={4}>
                         <Button fullWidth onClick={handleRemove} variant="contained" color="secondary">Delete last marker</Button>
                     </Grid>
-
                 </Grid>
-
             </Grid>
 
 

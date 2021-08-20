@@ -1,9 +1,22 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+
+
 import TextField from "../../FormsUI/Textfield";
+import NewDatePicker from "../../FormsUI/NewDatePicker";
+import Vein from '../../../data/Vein.json';
+import Select from "../../FormsUI/Select";
 
-import DateTimePicker from "../../FormsUI/DateTimePicker";
 
+const optionLat = {
+  "L": "Left",
+  "R": "Right",
+  "U": "Unspecified"
+}
+const optionYesOrno = {
+  0: "No",
+  1: "Yes"
+}
 
 function index() {
   return (
@@ -13,9 +26,26 @@ function index() {
         <Typography variant="h6">Vascular access Log</Typography>
       </Grid> */}
       <Grid item xs={12}>
-        <DateTimePicker name="examDate" label="Date of insertion" />
+        <NewDatePicker name="examDate" label="Date of insertion" />
       </Grid>
-      
+      <Grid item xs={12}>
+        <TextField
+          name="provider"
+          label="Provider of the device"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField name="fr" label="French size of device" />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField name="device" label="Device name" />
+      </Grid>
+      <Grid item xs={12}>        
+        <Select id="accessVein" name="accessVein" label="Accessed Vein" options={Vein} />
+      </Grid>
+      <Grid item xs={12}>        
+        <Select id="lateralityLabel" name="laterality" label="Laterality" options={optionLat} /> 
+      </Grid>
       <Grid item xs={12}>
         <TextField
           name="tipPos"
@@ -23,21 +53,30 @@ function index() {
         />
       </Grid>
       <Grid item xs={12}>
-        <DateTimePicker name="removalDate" label="Date of removal" />
+        <NewDatePicker name="removalDate" label="Date of removal" />
       </Grid>
       <Grid item xs={12}>
-        <TextField
+        <Select
           name="treatmentEndpoint"
-          label="Treatment Endpoint archieved?"
+          label="Treatment Endpoint achieved?"
+          options={optionYesOrno}
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          
+        <Select          
           name="complications"
           label="Any complications?"
+          helperText="If Yes, please go to next page"
+          options={optionYesOrno}
         />
       </Grid>
+      <Grid item xs={12}>
+        <TextField          
+          name="remarks"
+          label="Remarks"
+        />
+      </Grid>
+      
     </Grid>
       
     
