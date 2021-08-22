@@ -22,7 +22,7 @@ const onSubmit = (values) => {
 const valSchema = Yup.object().shape()
 
 const iValues = {
-    patientID: "Y3731231"
+    patientID: "A1234563"
 }
 function Panel() {
     const classes = useStyles();

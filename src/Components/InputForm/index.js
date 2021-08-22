@@ -11,6 +11,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab'
 
+import TabPanel from '../FormsUI/TabPanel'
 import PatientDemo from "./PatientDemo";
 import VenMap from "./VenMap";
 import AccessDevice from "./AccessDevice";
@@ -24,25 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Grid container xs={12} spacing={1} justify="center">
-          {children}
-        </Grid>
-      )}
-    </div>
-  );
-}
 
 function a11yProps(index) {
   return {
@@ -52,8 +35,8 @@ function a11yProps(index) {
 }
 
 const iValues = {
-  name: "Chan Tai Man",
-  patientID: "Y3731231",
+  name: "Addie Franceschi",
+  patientID: "A1234563",
   dob: new Date(2020, 1, 1),
   diagnosis: "Congenital Heart disease",  
   initialAccess: [{ top: 49.89298846022498, left: 49.157301966140636 },], //for demo purpose
