@@ -1,5 +1,4 @@
-import { DataGrid } from "@material-ui/data-grid";
-import { Button } from "@material-ui/core";
+import { DataGrid, GridToolbar } from "@material-ui/data-grid";
 //import { Link } from "react-router-dom";
 
 
@@ -7,17 +6,22 @@ import { Button } from "@material-ui/core";
 
 
 
-export default function DataTable({data, columns, pageSize}) {
+export default function DataTable({data, columns, ColumnMenu}) {
   
+
 
   return (
     <div style={{ height: 700, width: "100%" }}>
       <DataGrid
         rows={data}
         columns={columns}
-        pageSize={pageSize}
-        checkboxSelection
         disableSelectionOnClick
+        autoHeight
+        autoPageSize pagination
+        disableColumnMenu={ColumnMenu}
+        
+
+        components={{Toolbar: GridToolbar,}}
       />
     </div>
   );
