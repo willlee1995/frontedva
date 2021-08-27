@@ -7,7 +7,7 @@ import { Button } from "@material-ui/core";
 
 
 
-export default function DataTable({data, columns, pageSize}) {
+export default function DataTable({data, columns}) {
   
 
   return (
@@ -15,9 +15,11 @@ export default function DataTable({data, columns, pageSize}) {
       <DataGrid
         rows={data}
         columns={columns}
-        pageSize={pageSize}
+        
         checkboxSelection
         disableSelectionOnClick
+        autoHeight
+        autoPageSize
       />
     </div>
   );

@@ -114,7 +114,7 @@ function Table() {
               <br />
               <TabelToolBar />
               <br />
-              <DataTable pageSize={15} columns={columns} data={data} />
+              <DataTable columns={columns} data={data} />
             </div>
           </Container>
         </Grid>
