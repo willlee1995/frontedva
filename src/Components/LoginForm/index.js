@@ -7,39 +7,37 @@ import Password from "../FormsUI/Password";
 import { makeStyles } from "@material-ui/core/styles";
 import "@fontsource/roboto";
 import PropTypes from 'prop-types'
-
+// fetch('http://localhost:8055/auth/login',{
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify()
+//   }
+// ) for login use
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(8),
   },
 }));
-// async function loginUser(credentials) {
-//   return fetch('http://localhost:8080/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   })
-//     .then(data => data.json())
-//  }
+
 
 
 function LoginForm({setToken}) {
   const classes = useStyles();
   const iValues = {
-    user: "",
+    email: "",
     password: "",
   };
   const validationSchema = Yup.object({
-    user: Yup.string().required(),
+    email: Yup.string().required(),
     password: Yup.string().required(),
   });
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    console.log(e.values)
+  
+  const handleSubmit = async values => {
+    
+    console.log(values)
     ;
   }
   return (
@@ -58,7 +56,7 @@ function LoginForm({setToken}) {
                     <Typography variant="h5">Please Login</Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField name="user" label="User Name" />
+                    <TextField name="email" label="User Name" />
                   </Grid>
                   <Grid item xs={12}>
                     <Password name="password" label="Password" />
