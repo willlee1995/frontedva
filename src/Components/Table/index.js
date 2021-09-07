@@ -27,15 +27,15 @@ function Table() {
     {
       field: "id",
       headerName: "Case ID",
-      width: 90,
+      width: 110,
     },
     {
       field: "examDate",
       headerName: "Insertion Date",
-      width: 200,
+      width: 150,
     },
 
-    { field: "hkid", headerName: "HKID", width: 150 },
+    { field: "hkid", headerName: "HKID", width: 130 },
     {
       field: "name",
       headerName: "Name",
@@ -46,19 +46,19 @@ function Table() {
       field: "age",
       headerName: "Age",
       type: "number",
-      width: 120,
+      width: 90,
       editable: true,
     },
     {
       field: "dob",
       headerName: "DOB",
-      width: 150,
+      width: 130,
       editable: true,
     },
     {
       field: "sex",
       headerName: "Sex",
-      width: 110,
+      width: 90,
       editable: true,
     },
     {
@@ -114,7 +114,9 @@ function Table() {
               <br />
               <TabelToolBar />
               <br />
-              <DataTable columns={columns} data={data} />
+
+              <DataTable columns={columns} data={data} ColumnMenu={'False'}/>
+
             </div>
           </Container>
         </Grid>

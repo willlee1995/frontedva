@@ -4,25 +4,28 @@ import { Grid } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 
 const TabelToolBar = () => {
+
+//   const [filterFn, setFilterFn] = useState()
+
+//   const handleSearch = e => {
+//     let target = e.target;
+//     setFilterFn ({
+//       Fn: items => {
+//           if (target.value=="")
+//             return items
+//           else
+//             return items.filter
+//       }
+//     })
+//   }
+ 
   return (
     <Grid container alignItems="flex-end" spacing={1}>
-    
-      <Grid item align='left' xs={4}>
-      <Grid container spacing={1}>
-      <Grid item align='left' xs={6}>
-      <Button  variant="contained">Edit</Button>
+      <Grid item align='left' xs={8}>
+        <TextField fullWidth label="Search" type="text" />
       </Grid>
-      <Grid item align='left' xs={6}>
-      <Button shrink variant="contained" color="primary">
-          Remove
-        </Button>
-      </Grid>
-      </Grid>
-        
-        
-      </Grid>
-      <Grid item align='right' xs={8}>
-        <TextField label="Filter" type="text" />
+      <Grid item align='right' xs={4}>
+      <Button  variant="contained">+ Add New</Button>
       </Grid>
     </Grid>
   );

@@ -146,7 +146,7 @@ export default function Demo() {
               <Grid item xs={12}>
                 <Container maxWidth="lg">
                   <div>
-                    <DataTable columns={columns} data={data} />
+                    <DataTable columns={columns} data={data} ColumnMenu={'True'}/>
                   </div>
                 </Container>
               </Grid>
