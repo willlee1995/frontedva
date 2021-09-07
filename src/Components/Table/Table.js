@@ -6,7 +6,9 @@ import { DataGrid, GridToolbar } from "@material-ui/data-grid";
 
 
 
+
 export default function DataTable({data, columns, ColumnMenu}) {
+
   
 
 
@@ -18,9 +20,7 @@ export default function DataTable({data, columns, ColumnMenu}) {
         disableSelectionOnClick
         autoHeight
         autoPageSize pagination
-        disableColumnMenu={ColumnMenu}
-        
-
+        disableColumnMenu={ColumnMenu}   
         components={{Toolbar: GridToolbar,}}
       />
     </div>

@@ -114,7 +114,9 @@ function Table() {
               <br />
               <TabelToolBar />
               <br />
+
               <DataTable columns={columns} data={data} ColumnMenu={'False'}/>
+
             </div>
           </Container>
         </Grid>
