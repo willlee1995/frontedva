@@ -7,13 +7,11 @@ import {
   Tab,
   Typography,
   Divider,
-  Button,
 } from "@material-ui/core";
 import TabPanel from "../FormsUI/TabPanel";
 import ImageMarker from "react-image-marker";
 import Anatomy from "../../images/anatomy.svg";
 import DataTable from "../Table/Table";
-import TabelToolBar from "../Table/TableToolBar";
 
 function a11yProps(index) {
   return {
