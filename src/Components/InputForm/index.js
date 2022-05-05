@@ -6,12 +6,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Button } from "@material-ui/core";
 //import Autocomplete from '../FormsUI/Autocomplete'
 
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab'
-
-import TabPanel from '../FormsUI/TabPanel'
+import TabPanel from "../FormsUI/TabPanel";
 import PatientDemo from "./PatientDemo";
 import VenMap from "./VenMap";
 import AccessDevice from "./AccessDevice";
@@ -25,12 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -38,21 +35,21 @@ const iValues = {
   name: "Addie Franceschi",
   patientID: "A1234563",
   dob: new Date(2020, 1, 1),
-  diagnosis: "Congenital Heart disease",  
-  initialAccess: [{ top: 49.89298846022498, left: 49.157301966140636 },], //for demo purpose
+  diagnosis: "Congenital Heart disease",
+  initialAccess: [{ top: 49.89298846022498, left: 49.157301966140636 }], //for demo purpose
   patency: 1,
   examDate: new Date(2021, 1, 1),
   provider: "IR",
   fr: "6Fr",
-  device: "Bioflo double lumen PICC",  
+  device: "Bioflo double lumen PICC",
   accessVein: "EIV",
   laterality: "L",
-  tipPos: 'SVC/RA junction',
+  tipPos: "SVC/RA junction",
   removalDate: new Date(2021, 3, 1),
   treatmentEndpoint: 1,
   complications: 1,
-  remarks: 'None',
-  typesOfComplication: 'PR',
+  remarks: "None",
+  typesOfComplication: "PR",
   complicationDate: new Date(),
   detailsOfComplication: "Failed initial puncture",
   managementOfComp: "",
@@ -66,7 +63,7 @@ const valSchema = Yup.object().shape({
     )
     .required("Required"),
   name: Yup.string().required("Required"),
-  
+
   // initialAccess: Yup.array().min(1, "Click me "), // require an alert for user if no apply is pressed before
 });
 const onSubmit = (values) => {
@@ -77,24 +74,27 @@ function App() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     setValue(newValue);
   };
-  const handleNext = (event) => {
-    let newValue = value + 1
-    setValue(newValue)
-  }
-  const handleBack = (event) => {
-    let newValue = value - 1
-    setValue(newValue)
-  }
+  const handleNext = () => {
+    setValue((currentValue) => currentValue + 1);
+  };
+  const handleBack = () => {
+    setValue((currentValue) => currentValue - 1);
+  };
 
   return (
-
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <AppBar color="transparent" position="static">
-          <Tabs centered indicatorColor="secondary" value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tabs
+            centered
+            indicatorColor="secondary"
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
             <Tab label="Patient Demographic" {...a11yProps(0)} />
             <Tab label="Venous Mapping" {...a11yProps(1)} />
             <Tab label="Access Device" {...a11yProps(2)} />
@@ -117,7 +117,13 @@ function App() {
                       <PatientDemo /> {/* Tab 1 */}
                     </Grid>
                     <Grid item xs={4}>
-                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleNext}
+                      >
+                        Next
+                      </Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={1}>
@@ -125,10 +131,22 @@ function App() {
                       <VenMap /> {/* Tab 2 */}
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleNext}
+                      >
+                        Next
+                      </Button>
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button fullWidth variant="contained" onClick={handleBack}>Back</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleBack}
+                      >
+                        Back
+                      </Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={2}>
@@ -136,10 +154,22 @@ function App() {
                       <AccessDevice /> {/* Tab 3 */}
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button fullWidth variant="contained" onClick={handleNext}>Next</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleNext}
+                      >
+                        Next
+                      </Button>
                     </Grid>
                     <Grid alignContent="center" item xs={4}>
-                      <Button fullWidth variant="contained" onClick={handleBack}>Back</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleBack}
+                      >
+                        Back
+                      </Button>
                     </Grid>
                   </TabPanel>
                   <TabPanel value={value} index={3}>
@@ -147,7 +177,14 @@ function App() {
                       <Complications /> {/* Tab 4 */}
                     </Grid>
                     <Grid item xs={4}>
-                      <Button fullWidth variant="contained" color="primary" type="submit">Submit</Button>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
                     </Grid>
                   </TabPanel>
                 </Grid>

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const onSubmit = (values) => {
-    console.log("This is the submitted result", values);
+    console.log("This is the submitted result");
 };
 
 const valSchema = Yup.object().shape()
