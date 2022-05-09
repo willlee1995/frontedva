@@ -1,4 +1,5 @@
 import { useState, Fragment } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Tab, Tabs } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
@@ -24,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -35,9 +34,9 @@ export default function ButtonAppBar() {
   // const handleClick = (event) => {
   //   setAnchorEl(event.currentTarget);
   // };
-  const handleMenu = e => {
+  const handleMenu = (e) => {
     setAnchorEl(e.currentTarget);
-  }
+  };
   const theme = useTheme();
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -51,45 +50,54 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-          SMARTER Vein Health
-          </Typography> 
-          {isXS ? (<Fragment>
-            <IconButton
-            edge="end"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={handleMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-          <MenuItem onClick={handleClose}><Link to='/'>Home</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to='/input'>Input Form</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to='/table'>Record</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to='/panel'>Panel</Link></MenuItem>
-
-          </Menu>
-          </Fragment>
-          )
-           : 
-           (<Fragment>
-            <Tabs value={value} onChange={handleChange} indicatorColor="primary">
-            <Tab component={Link} to="/" label="Home" />
-            <Tab component={Link} to="/input" label="Input Form" />
-            <Tab component={Link} to="/table" label="Record" />
-            <Tab component={Link} to="/panel" label="Panel" />
-          </Tabs>
-          </Fragment>)
-
-        }
-          
+            SMARTER Vein Health
+          </Typography>
+          {isXS ? (
+            <Fragment>
+              <IconButton
+                edge="end"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMenu}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Link to="/">Home</Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/input">Input Form</Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/table">Record</Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/panel">Panel</Link>
+                </MenuItem>
+              </Menu>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+              >
+                <Tab component={Link} to="/" label="Home" />
+                <Tab component={Link} to="/input" label="Input Form" />
+                <Tab component={Link} to="/table" label="Record" />
+                <Tab component={Link} to="/panel" label="Panel" />
+              </Tabs>
+            </Fragment>
+          )}
         </Toolbar>
       </AppBar>
     </div>

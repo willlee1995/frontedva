@@ -6,7 +6,7 @@ import { Container, Grid, Typography, Button } from "@material-ui/core";
 import Password from "../FormsUI/Password";
 import { makeStyles } from "@material-ui/core/styles";
 import "@fontsource/roboto";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
 //     .then(data => data.json())
 //  }
 
-
-function LoginForm({setToken}) {
+function LoginForm() {
   const classes = useStyles();
   const iValues = {
     user: "",
@@ -37,11 +36,10 @@ function LoginForm({setToken}) {
     password: Yup.string().required(),
   });
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.values)
-    ;
-  }
+    console.log(e.values);
+  };
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -91,9 +89,3 @@ function LoginForm({setToken}) {
 }
 
 export default LoginForm;
-
-
-
-LoginForm.propTypes = {
-  setToken : PropTypes.func.isRequired
-}

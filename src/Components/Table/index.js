@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DataTable from "./Table";
 import TabelToolBar from "./TableToolBar";
 import { Button, Grid, Container } from "@material-ui/core";
+import React from "react";
 
 function Table() {
   const [data, setData] = useState([]);
